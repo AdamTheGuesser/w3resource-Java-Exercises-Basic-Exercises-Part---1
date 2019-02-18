@@ -1,0 +1,27 @@
+import java.util.*;
+
+public class Main {
+  public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int remainder = 0;
+    String num2 = "";
+    
+    /* 19. Write a Java program to [convert] a 
+    [decimal number] to [binary number].*/
+  
+    System.out.println("Decimal Number Input: ");
+    int num1 = in.nextInt();
+    
+    while (num1 != 0){
+      remainder = num1%2; //1
+      num1 = num1/2; //6
+      
+      if (remainder == 1) //yes
+        num2 = "1" + num2; //1
+      else if (remainder == 0)
+        num2 = "0" + num2;
+    }
+    
+    System.out.println(num2);
+ }
+}
