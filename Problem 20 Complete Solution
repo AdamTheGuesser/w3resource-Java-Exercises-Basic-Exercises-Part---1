@@ -1,0 +1,56 @@
+import java.util.*;
+
+public class Main {
+  public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int degree = 0;
+    int terms = 0;
+    String convertedNum = "";
+    char[] hexaNumbers = 
+    {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+    'A', 'B', 'C', 'D', 'E', 'F'};
+    
+    /* Write a Java program to [convert] a 
+    [decimal] number to [hexadecimal] number.*/ 
+    
+    System.out.print("Please input a decimal number: ");
+    int inputNum = in.nextInt();
+    int inputNumCopy = inputNum;
+    
+    if (inputNum == 0)
+      convertedNum = convertedNum + '0';
+    
+    //Extract degree and number of terms
+    
+    while (inputNumCopy != 0){
+      inputNumCopy = inputNumCopy/16;
+      terms++;
+    }
+    
+    degree = terms - 1;
+    inputNumCopy = inputNum;
+    
+    if (inputNum != 0){
+      // Extract First Term
+    
+      convertedNum = hexaNumbers[Math.round(((inputNumCopy) / Math.round((Math.pow(16, degree)))))] + convertedNum;
+      inputNumCopy = inputNum;
+      
+      // Extract Middle Terms
+      
+      if (terms > 2)
+        for (int i = degree - 1; i > 0; i--)
+          convertedNum = convertedNum + hexaNumbers[(Math.round(((inputNumCopy) / (Math.round(Math.pow(16, i))) % 16)))];
+      inputNumCopy = inputNum;
+      
+      // Extract Last Term
+      
+      if (terms > 1)
+      convertedNum = convertedNum + hexaNumbers[(inputNumCopy % 16)];
+    
+    }
+    
+    System.out.println(convertedNum);
+  
+  }
+}
