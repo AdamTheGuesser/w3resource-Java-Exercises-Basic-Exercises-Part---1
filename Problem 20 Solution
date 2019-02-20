@@ -1,0 +1,43 @@
+import java.util.*;
+
+public class Main {
+  public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int remainder = 0;
+    char[] tenToFifteenLetters = 
+    {'A', 'B', 'C', 'D', 'E', 'F'}; 
+    String hexaDecNum = "";
+    
+    /* 20. Write a Java program to [convert] a 
+    [decimal number] to [hexadecimal number]  .*/
+    // This should take the following cases into account.
+    // Numbers between 1-9, those between 10-15, and divisors of 16
+    
+    System.out.print("Please input a decimal number: ");
+    int num1 = in.nextInt();
+    
+    countPowerPlaceholder = num1;
+    
+    if (num1 == 0)
+      System.out.println("0");
+      
+    while (num1 != 0){
+      remainder = num1%16;
+      num1 = num1/16;
+      
+      if (remainder > 0 && remainder < 10)
+        hexaDecNum = remainder + hexaDecNum;
+        
+      else if ((remainder > 9) && (remainder < 16))
+        hexaDecNum = hexaDecNum + (tenToFifteenLetters[(remainder-10)]);
+      
+      else if (remainder == 0){
+          hexaDecNum = num1 + hexaDecNum + "0";
+          num1 = 0;
+      }
+    }
+    
+    System.out.println(hexaDecNum);
+    
+ }
+}
