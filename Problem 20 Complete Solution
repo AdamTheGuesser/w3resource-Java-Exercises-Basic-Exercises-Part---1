@@ -17,10 +17,10 @@ public class Main {
     int inputNum = in.nextInt();
     int inputNumCopy = inputNum;
     
-    if (inputNum == 0)
+    if (inputNum == 0) // If the input is 0, simply output 0 (0 is an edge case that would otherwise jeopardize the program)
       convertedNum = convertedNum + '0';
     
-    //Extract degree and number of terms
+    // Extract degree and number of terms
     
     while (inputNumCopy != 0){
       inputNumCopy = inputNumCopy/16;
