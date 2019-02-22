@@ -1,0 +1,55 @@
+import java.util.*;
+
+public class Main {
+  public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int degree = 0;
+    int terms = 0;
+    String convertedNum = "";
+    char[] octaNumbers = 
+    {'0', '1', '2', '3', '4', '5', '6', '7', '8'};
+    
+    /* Write a Java program to [convert] a 
+    [decimal] number to [octal] number.*/ 
+    
+    System.out.print("Please input a decimal number: ");
+    int inputNum = in.nextInt();
+    int inputNumCopy = inputNum;
+    
+    if (inputNum == 0) // If the input is 0, simply output 0 (0 is an edge case that would otherwise jeopardize the program)
+      convertedNum = convertedNum + '0';
+    
+    // Extract degree and number of terms
+    
+    while (inputNumCopy != 0){
+      inputNumCopy = inputNumCopy/8;
+      terms++;
+    }
+    
+    degree = terms - 1;
+    inputNumCopy = inputNum;
+    
+    if (inputNum != 0){
+      // Extract First Term
+    
+      convertedNum = octaNumbers[Math.round(((inputNumCopy) / Math.round((Math.pow(8, degree)))))] + convertedNum;
+      inputNumCopy = inputNum;
+      
+      // Extract Middle Terms
+      
+      if (terms > 2)
+        for (int i = degree - 1; i > 0; i--)
+          convertedNum = convertedNum + octaNumbers[(Math.round(((inputNumCopy) / (Math.round(Math.pow(8, i))) % 8)))];
+      inputNumCopy = inputNum;
+      
+      // Extract Last Term
+      
+      if (terms > 1)
+      convertedNum = convertedNum + octaNumbers[(inputNumCopy % 8)];
+    
+    }
+    
+    System.out.println(convertedNum);
+  
+  }
+}
