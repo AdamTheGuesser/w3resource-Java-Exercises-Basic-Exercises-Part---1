@@ -1,0 +1,72 @@
+import java.util.*;
+
+public class Problem23 {
+  
+  public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int stringIterator = 0;
+    int termsBin = 0;
+    int termsHex = 0;
+    int decaNum = 0;
+    int degreeHex = 0;
+    String convertedNum = "";
+    char[] hexaNumbers = 
+    {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+    'A', 'B', 'C', 'D', 'E', 'F'};
+    
+    /* 23. Write a Java program to [convert] a 
+    [binary number] to [hexadecimal number]. */
+    // I will combine my problem 20 and 22 solutions
+    
+    // Receive binary number input from user and store into an int variable
+    System.out.print("Please input a binary number: ");//1010
+    int inputNum = in.nextInt(); // 1010
+    
+    // Convert the input number into a string so that we can conveniently loop over each digit to perform operations
+    String inputNumString = Integer.toString(inputNum); //1010
+    termsBin = inputNumString.length(); //4
+      
+    // Beginning at the highest power terms which decrements after each loop up to and including 0
+    for (int i = termsBin - 1; i >= 0; i--){
+        if (inputNumString.charAt(stringIterator) == '1')
+            decaNum = (int) (decaNum + Math.pow(2, i));
+        stringIterator++;
+    }
+      
+    int decaNumCopy = decaNum;
+    
+    if (decaNum == 0) // If the input is 0, simply output 0 (0 is an edge case that would otherwise jeopardize the program)
+      convertedNum = convertedNum + '0';
+    
+    // Extract degree and number of terms
+    
+    while (decaNumCopy != 0){
+      decaNumCopy = decaNumCopy/16;
+      termsHex++;
+    }
+    
+    degreeHex = termsHex - 1;
+    decaNumCopy = decaNum;
+    
+    // Extract First Term
+    if (inputNum != 0){    
+      convertedNum = hexaNumbers[Math.round(((decaNumCopy) / Math.round((Math.pow(16, degreeHex)))))] + convertedNum;
+      decaNumCopy = decaNum;
+      
+      // Extract Middle Terms
+      
+      if (termsHex > 2)
+        for (int i = degreeHex - 1; i > 0; i--)
+          convertedNum = convertedNum + hexaNumbers[(Math.round(((decaNumCopy) / (Math.round(Math.pow(16, i))) % 16)))];
+      decaNumCopy = decaNum;
+      
+      // Extract Last Term
+      
+      if (termsHex > 1)
+      convertedNum = convertedNum + hexaNumbers[(decaNumCopy % 16)];
+    }
+    
+    System.out.println(convertedNum);
+    
+ }
+}
