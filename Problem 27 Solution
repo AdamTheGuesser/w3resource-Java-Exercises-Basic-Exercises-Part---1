@@ -1,0 +1,58 @@
+import java.util.*;
+
+public class Problem27 {
+  
+  public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int stringIterator = 0;
+    int terms = 0;
+    int decaNum = 0;
+    int remainderHex = 0;
+    int countPowerPlaceholderHex = 0;
+    char[] tenToFifteenLetters = 
+    {'A', 'B', 'C', 'D', 'E', 'F'}; 
+    String hexaDecNum = "";
+
+    
+    /* 22. Write a Java program to [convert] an 
+    [octal number] to [hexadecimal number]. */
+    
+    // Receive octal number input from user and store into an int variable
+    System.out.print("Please input an octal number: "); 
+    int inputNum = in.nextInt();
+    
+    // Convert the input number into a string so that we can conveniently loop over each digit to perform operations
+    String inputNumString = Integer.toString(inputNum);
+    terms = inputNumString.length(); 
+            
+    // Beginning at the highest power terms which decrements after each loop up to and including 0
+    for (int i = terms - 1; i >= 0; i--){
+        decaNum = (int) (decaNum + ((Math.pow(8, i)) * Integer.parseInt(String.valueOf(inputNumString.charAt(stringIterator)))));
+        stringIterator++;
+    }
+    
+    countPowerPlaceholderHex = decaNum;
+    
+    if (decaNum == 0)
+      System.out.println("0");
+      
+    while (decaNum != 0){
+      remainderHex = decaNum%16;
+      decaNum = decaNum/16;
+      
+      if (remainderHex > 0 && remainderHex < 10)
+        hexaDecNum = remainderHex + hexaDecNum;
+        
+      else if ((remainderHex > 9) && (remainderHex < 16))
+        hexaDecNum = hexaDecNum + (tenToFifteenLetters[(remainderHex-10)]);
+      
+      else if (remainderHex == 0){
+          hexaDecNum = decaNum + hexaDecNum + "0";
+          decaNum = 0;
+      }
+    }
+    
+    System.out.println(hexaDecNum);
+    
+ }   
+ } 
