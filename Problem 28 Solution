@@ -1,0 +1,38 @@
+import java.util.*;
+
+public class Problem28 {
+  
+  public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int terms = 0;
+    int decaNum = 0;
+    int stringIterator = 0;
+    char[] hexaNumbers = 
+    {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+    'A', 'B', 'C', 'D', 'E', 'F'};
+    
+    /* 22. Write a Java program to [convert] a 
+    [binary number] to [decimal number]. */
+    
+    // Receive octal number input from user and store into an int variable
+    System.out.print("Please input a hexadecimal number: "); 
+    String inputNumString = in.nextLine(); //10
+    
+    // Convert the input number into a string so that we can conveniently loop over each digit to perform operations
+    terms = inputNumString.length(); //2
+    System.out.println(terms);
+            
+    // Beginning at the highest power terms which decrements after each loop up to and including 0
+    for (int i = terms - 1; i >= 0; i--){
+        for (int j = 0 ; j < hexaNumbers.length ; j++){
+            if (inputNumString.charAt(stringIterator) == hexaNumbers[j])
+                decaNum = (int) (decaNum + ((Math.pow(16, i)) * j));
+        }         
+    stringIterator++;
+    }
+  
+    System.out.println(decaNum);
+
+  }
+}
+
