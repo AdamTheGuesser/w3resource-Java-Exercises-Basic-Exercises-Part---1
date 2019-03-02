@@ -1,0 +1,32 @@
+import java.util.*;
+
+public class Problem32 {
+    
+    //32. Write a Java program to compare two numbers.
+    
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        
+        System.out.print("Please input first number: ");
+        int firstNum = in.nextInt();
+        
+        System.out.print("Please input second number: ");
+        int secondNum = in.nextInt();
+        
+        if (firstNum == secondNum)
+            System.out.println(firstNum + " == " + secondNum);
+        else
+            System.out.println(firstNum + " != " + secondNum);
+        
+        if (firstNum < secondNum && firstNum != secondNum)
+            System.out.println(firstNum + " < " + secondNum);
+        else if (firstNum != secondNum)
+            System.out.println(firstNum + " > " + secondNum);
+        
+        if (firstNum <= secondNum && firstNum != secondNum)
+            System.out.println(firstNum + " <= " + secondNum);
+        else if (firstNum != secondNum)
+            System.out.println(firstNum + " >= " + secondNum);     
+ 
+    }  
+}
