@@ -1,0 +1,77 @@
+import java.util.*;
+
+public class Problem30 {
+  
+  public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int termsHex = 0;
+    int decaNum = 0;
+    int stringIteratorHex = 0;
+    char[] hexaNumbers = 
+    {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+    'A', 'B', 'C', 'D', 'E', 'F'};
+    int degreeOct = 0;
+    int termsOct = 0;
+    String convertedNumOct = "";
+    char[] octaNumbers = 
+    {'0', '1', '2', '3', '4', '5', '6', '7', '8'};
+    
+    /* 28. Write a Java program to [convert] a 
+    [hexadecimal number] to [decimal number]. */
+    
+    // Receive octal number input from user and store into an int variable
+    System.out.print("Please input a hexadecimal number: "); 
+    String inputNumString = in.nextLine(); //10
+    
+    // Convert the input number into a string so that we can conveniently loop over each digit to perform operations
+    termsHex = inputNumString.length(); //2
+            
+    // Beginning at the highest power terms which decrements after each loop up to and including 0
+    for (int i = termsHex - 1; i >= 0; i--){
+        for (int j = 0 ; j < hexaNumbers.length ; j++){
+            if (inputNumString.charAt(stringIteratorHex) == hexaNumbers[j])
+                decaNum = (int) (decaNum + ((Math.pow(16, i)) * j));
+        }         
+    stringIteratorHex++;
+    }
+    
+    int decaNumCopy = decaNum;
+  
+    if (decaNum == 0) // If the input is 0, simply output 0 (0 is an edge case that would otherwise jeopardize the program)
+      convertedNumOct = convertedNumOct + '0';
+    
+    // Extract degree and number of terms
+    
+    while (decaNumCopy != 0){
+      decaNumCopy = decaNumCopy/8;
+      termsOct++;
+    }
+    
+    degreeOct = termsOct - 1;
+    decaNumCopy = decaNum;
+    
+    if (decaNum != 0){
+      // Extract First Term
+    
+      convertedNumOct = octaNumbers[Math.round(((decaNumCopy) / Math.round((Math.pow(8, degreeOct)))))] + convertedNumOct;
+      decaNumCopy = decaNum;
+      
+      // Extract Middle Terms
+      
+      if (termsOct > 2)
+        for (int i = degreeOct - 1; i > 0; i--)
+          convertedNumOct = convertedNumOct + octaNumbers[(Math.round(((decaNumCopy) / (Math.round(Math.pow(8, i))) % 8)))];
+      decaNumCopy = decaNum;
+      
+      // Extract Last Term
+      
+      if (termsOct > 1)
+      convertedNumOct = convertedNumOct + octaNumbers[(decaNumCopy % 8)];
+    
+    }
+    
+    System.out.println(convertedNumOct);
+
+  }
+}
+
