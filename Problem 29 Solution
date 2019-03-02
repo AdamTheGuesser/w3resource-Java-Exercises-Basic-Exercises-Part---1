@@ -1,0 +1,49 @@
+import java.util.*;
+
+public class Problem29 {
+  
+  public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int termsHex = 0;
+    int decaNum = 0;
+    int stringIteratorHex = 0;
+    char[] hexaNumbers = 
+    {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+    'A', 'B', 'C', 'D', 'E', 'F'};
+    int remainderBin = 0;
+    String decToBinConversion = "";
+    
+    /* 29. Write a Java program to [convert] a 
+    [hexadecimal number] to [binary number]. */
+    
+    // Receive octal number input from user and store into an int variable
+    System.out.print("Please input a hexadecimal number: "); 
+    String inputNumString = in.nextLine(); //10
+    
+    // Convert the input number into a string so that we can conveniently loop over each digit to perform operations
+    termsHex = inputNumString.length(); //2
+            
+    // Beginning at the highest power terms which decrements after each loop up to and including 0
+    for (int i = termsHex - 1; i >= 0; i--){
+        for (int j = 0 ; j < hexaNumbers.length ; j++){
+            if (inputNumString.charAt(stringIteratorHex) == hexaNumbers[j])
+                decaNum = (int) (decaNum + ((Math.pow(16, i)) * j));
+        }         
+    stringIteratorHex++;
+    }
+  
+    while (decaNum != 0){
+      remainderBin = decaNum%2;
+      decaNum = decaNum/2;
+      
+      if (remainderBin == 1) 
+        decToBinConversion = "1" + decToBinConversion;
+      else if (remainderBin == 0)
+        decToBinConversion = "0" + decToBinConversion;
+    }
+    
+    System.out.println(decToBinConversion);
+
+  }
+}
+
